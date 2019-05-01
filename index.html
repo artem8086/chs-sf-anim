@@ -4,19 +4,78 @@
 	<meta charset="UTF-8">
 	<title>Test animation</title>
 	<style>
-		.sf-anim {
+		.load-screen {
+			position: relative;
 			margin: 0 auto;
+			width: 1920px;
+			height: 1080px;
+			border: 3px solid #000;
+			overflow: hidden;
+		}
+		.overlay {
+			position: absolute;
+			width: 1920px;
+			height: 1080px;
+			background: linear-gradient(rgba(0, 0, 0, 0.4) 0%, transparent 50%, transparent 100%);
+		}
+		.chs-sky {
+			position: absolute;
+			top: 0;
+			width: 1980px;
+			height: 1080px;
+			background-image: url('chs_sky.png');
+			background-size: 100% auto;
+			background-repeat: no-repeat;
+			animation: sky-anim 16s ease-in-out infinite;
+		}
+		@keyframes sky-anim {
+			0% { top: 0px; }
+			50% { top: -64px; }
+			100% { top: 0px; }
+		}
+		.chs-arena {
+			position: absolute;
+			bottom: 0;
+			width: 1980px;
+			height: 1080px;
+			background-image: url('arena.png');
+			background-size: 100% auto;
+			background-repeat: no-repeat;
+			background-position: bottom -100% center;
+		}
+		.sf-anim {
+			position: absolute;
+			left: calc(50% - 512px);
+			bottom: 640px;
 			width: 512px;
 			height: 512px;
-			background: url('sprite.png');
-			animation: anim 1s steps(20) infinite;
+			transform-origin: top left;
+			transform: scale(2);
+			background-image: url('sprite.png');
+			animation: sf-anim 1s steps(20) infinite;
 		}
-		@keyframes anim {
+		.chs-mod {
+			position: absolute;
+			left: calc(50% - 275px);
+			bottom: 0;
+			width: 550px;
+			height: 620px;
+			background-image: url('chs_mod.png');
+			background-size: 100% auto;
+			background-repeat: no-repeat;
+		}
+		@keyframes sf-anim {
 			100% { background-position: -10240px; }
 		}
 	</style>
 </head>
 <body>
-	<div class="sf-anim"></div>
+	<div class="load-screen">
+		<div class="chs-sky"></div>
+		<div class="chs-arena"></div>
+		<div class="overlay"></div>
+		<div class="sf-anim"></div>
+		<div class="chs-mod"></div>
+	</div>
 </body>
 </html>
