@@ -67,18 +67,45 @@
 			background-size: 100% auto;
 			background-repeat: no-repeat;
 		}
+		.chs-mod-quad {
+			position: absolute;
+			left: calc(50% - 275px);
+			bottom: 0;
+			width: 550px;
+			height: 620px;
+			background-image: url('chs_mod_quad.png');
+			background-size: 100% auto;
+			background-repeat: no-repeat;
+		}
+		.hidden {
+			display: none;
+		}
 		@keyframes sf-anim {
 			100% { background-position: -10240px; }
 		}
 	</style>
 </head>
 <body>
-	<div class="load-screen">
+	<div id="loader" class="load-screen">
 		<div class="chs-sky"></div>
 		<div class="chs-arena"></div>
 		<div class="overlay"></div>
 		<div class="sf-anim"></div>
-		<div class="chs-mod"></div>
+		<div id="chsmod" class="chs-mod"></div>
+		<div id="chsquad" class="chs-mod-quad hidden"></div>
 	</div>
+	<script>
+		var chsmod = document.getElementById('chsmod');
+		var chsquad = document.getElementById('chsquad');
+		document.getElementById('loader').addEventListener('click', function () {
+			if (chsquad.classList.contains('hidden')) {
+				chsmod.classList.add('hidden');
+				chsquad.classList.remove('hidden');
+			} else {
+				chsmod.classList.remove('hidden');
+				chsquad.classList.add('hidden');
+			}
+		});
+	</script>
 </body>
 </html>
